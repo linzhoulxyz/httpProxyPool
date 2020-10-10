@@ -1,0 +1,49 @@
+db:
+  adapter: mysql
+  host: 127.0.0.1
+  port: 3306
+  name: sports
+  password:
+  user: root
+  table_prefix: ''
+  log: log/sql.log
+  debug: true
+  auto_migrate: true
+redis:
+  host: 127.0.0.1
+  port: 6379
+  auth:
+  db: 1
+  log: log/redis.log
+log:
+  writers: file,stdout
+  logger_level: DEBUG
+  logger_file: log/server.log
+  resty_file: log/resty.log
+  error_file: log/error.log
+  log_format_text: false
+  rollingPolicy: daily
+  log_rotate_date: 1
+  log_rotate_size: 1
+  log_backup_count: 7
+crawler:
+  debug: false
+  concurrence: 5
+proxy:
+  cache_clean_second: 12
+  cache_clean_interval: 5
+  source_use: ['zdy']
+  zhima:
+    source: "zhima"
+    interval_time: 10
+    max_ip: 1000
+    pre_ip: 200
+    req_ip: "http://http.tiqu.alicdns.com/getip3?num=%v&type=2&pro=0&city=0&yys=0&port=1&pack=111611&ts=1&ys=1&cs=1&lb=1&sb=0&pb=45&mr=1&regions=&gm=4"
+    write_ip: "http://wapi.http.cnapi.cc/index/index/save_white?neek=168213&appkey=07020d13bfa7ccb7c2214ba68ce22796&white=%s"
+  zdy:
+    source: "zdy"
+    interval_time: 12
+    app_id: "test"
+    app_key: "test"
+    req_ip: "http://www.zdopen.com/ShortProxy/GetIP/?api=%v&akey=%v&count=5&order=2&type=3"
+    write_ip: "http://www.zdopen.com/ShortProxy/BindIP/?api=%v&akey=%v&i=1"
